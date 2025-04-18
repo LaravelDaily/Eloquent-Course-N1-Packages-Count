@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function index(): View
     {
-        $users = User::paginate();
+        $users = User::withCount('posts')->with('media')->get();
 
         return view('users.index', compact('users'));
     }
